@@ -25,8 +25,8 @@ void maker::make(int x) {
     string name=homedir;
     ofstream txt(name+"/BINARIOS.txt");
     for(int i=1; i<x;i++){
-       txt<<toBinary(rand() % 100)+"\n";
+       txt<<toBinary(rand() % 10000)+"\n";
     }
-    txt<<toBinary(rand() % 100);
+    txt<<toBinary(rand() % 10000);
     txt.close();
 }
