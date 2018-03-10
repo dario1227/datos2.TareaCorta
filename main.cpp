@@ -1,5 +1,6 @@
-#include <iostream>
 #include "QuickSort/QuickSort.h"
+#include "txt Maker/maker.h"
+#include <iostream>
 using namespace std;
 int main() {
     int a[100];
@@ -10,5 +11,5 @@ int main() {
     for (int i = 0; i < 100; i++ ){
         cout << a[i] << "-";
     }
-    return 0;
+    maker::make(100000);
 }
