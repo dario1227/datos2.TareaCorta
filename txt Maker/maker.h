@@ -11,6 +11,7 @@ public:
 
     static void make(int x);
     static void crear();
+    static void read();
 
 };
 
