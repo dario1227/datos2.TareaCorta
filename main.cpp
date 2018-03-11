@@ -13,5 +13,7 @@ int main() {
     for (int i = 0; i < 100; i++ ){
         cout << a[i] << "-";
     }
-    maker::make(100000);
+    maker::make(3000);
+    maker::crear();
+    return 0;
 }
