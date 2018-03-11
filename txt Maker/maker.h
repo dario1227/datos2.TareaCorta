@@ -10,9 +10,13 @@ class maker {
 public:
 
     static void make(int x);
-    static int  getLine(int x );
+     int*  getLine(int x );
     static void read();
+    int* sacaArr1();
 
+    int *sacaArr3();
+
+    int *sacaArr2();
 };
 
 

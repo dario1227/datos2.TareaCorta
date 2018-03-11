@@ -62,21 +62,75 @@ void maker::read() {
     }
 
 }
-int maker::getLine(int x){
+int* maker::getLine(int x){
+    if(x==1){
+        return sacaArr1();
+    }
+    if(x==2){
+        return sacaArr2();
+    }
+    else{
+        return sacaArr3();
+}
+//    int i=0;
+//    string line;
+//    struct passwd *pw = getpwuid(getuid());
+//    const char *homedir = pw->pw_dir;
+//    string name=homedir;
+//    ifstream txt(name+"/BINARIOS.txt");
+//    while(getline(txt,line)){
+//        if(x==i){
+//            return toDecimal(std::stol(line));
+//        }
+//        else{
+//            i++;
+//        }
+//    }
+
+
+}
+int* maker::sacaArr1() {
     int i=0;
     string line;
     struct passwd *pw = getpwuid(getuid());
     const char *homedir = pw->pw_dir;
     string name=homedir;
     ifstream txt(name+"/BINARIOS.txt");
-    while(getline(txt,line)){
-        if(x==i){
-            return toDecimal(std::stol(line));
-        }
-        else{
+    int array[1000] ;
+    while(getline(txt,line) && i<=999){
+         array[i] =toDecimal(std::stol(line));
             i++;
-        }
     }
-
-
+    return array;
 }
+
+int *maker::sacaArr3() {
+    int i=0;
+    string line;
+    struct passwd *pw = getpwuid(getuid());
+    const char *homedir = pw->pw_dir;
+    string name=homedir;
+    ifstream txt(name+"/BINARIOS.txt");
+    int array[1000] ;
+    while(getline(txt,line) && i<=1999){
+        if(i>999 && i<=1999){
+        array[i] =toDecimal(std::stol(line));}
+        i++;
+    }
+    return array;
+}
+
+int *maker::sacaArr2() {
+    int i=0;
+    string line;
+    struct passwd *pw = getpwuid(getuid());
+    const char *homedir = pw->pw_dir;
+    string name=homedir;
+    ifstream txt(name+"/BINARIOS.txt");
+    int array[1000] ;
+    while(getline(txt,line) && i<=2999){
+        if(i>1999 && i<=2999){
+            array[i] =toDecimal(std::stol(line));}
+        i++;
+    }
+    return array;}
