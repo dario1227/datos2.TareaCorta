@@ -2,6 +2,7 @@
 // Created by dario1227 on 10/03/18.
 //
 #include "maker.h"
+#include "BigArray.h"
 #include <fstream>
 #include <unistd.h>
 #include <pwd.h>
@@ -98,7 +99,7 @@ int* maker::sacaArr1() {
     ifstream txt(name+"/BINARIOS.txt");
     int array[1000] ;
     while(getline(txt,line) && i<=999){
-         array[i] =toDecimal(std::stol(line));
+         BigArray::x[i] =toDecimal(std::stol(line));
             i++;
     }
     return array;
@@ -114,7 +115,7 @@ int *maker::sacaArr3() {
     int array[1000] ;
     while(getline(txt,line) && i<=1999){
         if(i>999 && i<=1999){
-        array[i] =toDecimal(std::stol(line));}
+            BigArray::y[i] =toDecimal(std::stol(line));}
         i++;
     }
     return array;
@@ -130,7 +131,7 @@ int *maker::sacaArr2() {
     int array[1000] ;
     while(getline(txt,line) && i<=2999){
         if(i>1999 && i<=2999){
-            array[i] =toDecimal(std::stol(line));}
+            BigArray::z[i] =toDecimal(std::stol(line));}
         i++;
     }
     return array;}
