@@ -12,6 +12,7 @@ int main() {
         cout << a[i] << "-";
     }
     maker::make(1000);
+
     maker::read();
     return 0;
 }
