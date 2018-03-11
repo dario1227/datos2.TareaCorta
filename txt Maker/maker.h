@@ -10,7 +10,7 @@ class maker {
 public:
 
     static void make(int x);
-
+    static int  getLine(int x );
     static void read();
 
 };

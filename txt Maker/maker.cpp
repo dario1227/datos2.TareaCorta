@@ -62,3 +62,21 @@ void maker::read() {
     }
 
 }
+int maker::getLine(int x){
+    int i=0;
+    string line;
+    struct passwd *pw = getpwuid(getuid());
+    const char *homedir = pw->pw_dir;
+    string name=homedir;
+    ifstream txt(name+"/BINARIOS.txt");
+    while(getline(txt,line)){
+        if(x==i){
+            return toDecimal(std::stol(line));
+        }
+        else{
+            i++;
+        }
+    }
+
+
+}

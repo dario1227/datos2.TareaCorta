@@ -12,7 +12,7 @@ int main() {
         cout << a[i] << "-";
     }
     maker::make(1000);
-
+    cout<<"////"<<maker::getLine(5);
     maker::read();
     return 0;
 }
