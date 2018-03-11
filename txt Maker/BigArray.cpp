@@ -3,7 +3,9 @@
 //
 
 #include "BigArray.h"
-
+int BigArray::x[1000]={};
+int BigArray::y[1000]={};
+int BigArray::z[1000]={};
 int& BigArray::operator[](int index) {
     //DEFINIR LAS FUNCIONES :C
     if(index<=999){
