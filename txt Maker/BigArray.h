@@ -10,11 +10,13 @@
 
 class BigArray {
 public:
+    static const int pagesize = 1000;
     int anterior=0;
     maker* var = new maker();
-    static int x[1000] ;
-    static int y[1000];
-    static int z[1000];
+    static int x[pagesize] ;
+    static int y[pagesize];
+    static int z[pagesize];
+
     int activateX=0;
     int activatez=0;
     int activatey=0;
