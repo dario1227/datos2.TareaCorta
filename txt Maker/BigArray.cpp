@@ -8,7 +8,48 @@ int BigArray::pagesize = 1000;
 int BigArray::x[pagesize]={};
 int BigArray::y[pagesize]={};
 int BigArray::z[pagesize]={};
+int divide(int *array, int start, int end) {
+    int left;
+    int right;
+    int pivot;
+    int temp;
 
+    pivot = array[start];
+    left = start;
+    right = end;
+    while (left < right) {
+        while (array[right] > pivot) {
+            right--;
+        }
+
+        while ((left < right) && (array[left] <= pivot)) {
+            left++;
+        }
+
+        if (left < right) {
+            temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+        }
+    }
+
+    temp = array[right];
+    array[right] = array[start];
+    array[start] = temp;
+
+    return right;
+}
+void BigArray::ordenar(int *array, int start, int end) {
+    int pivot;
+
+    if (start < end) {
+        pivot = divide(array, start, end);
+
+        BigArray::ordenar(array, start, pivot - 1);
+        BigArray::ordenar(array, pivot + 1, end);
+    }
+
+}
 int& BigArray::operator[](int index) {
     int index_2 = floor(index/pagesize);
     //DEFINIR LAS FUNCIONES :C
