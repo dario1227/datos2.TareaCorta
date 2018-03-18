@@ -48,7 +48,7 @@ void BigArray::ordenar(int *array, int start, int end) {
 
     if (start < end) {
         std::cout<<"ARRAY SE HIZO CAMBIO  "<<"LL";
-        pivot = divide(array, start, end-1);
+        pivot = divide(array, start, end);
         std::cout<<"Numero de pagina arreglada:  "<<"LOL";
         BigArray::ordenar(array, start, pivot - 1);
         BigArray::ordenar(array, pivot + 1, end);
