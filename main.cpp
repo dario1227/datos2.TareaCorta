@@ -11,5 +11,6 @@ int main() {
     BigArray::print_Array(1);
     BigArray::print_Array(2);
     BigArray::print_Array(3);
+    maker::modify(3,666);
     return 0;
 }

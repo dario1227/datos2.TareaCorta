@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <math.h>
+#include <cstring>
 #include <fstream>
 using namespace std;
 int toDecimal(long x){
@@ -45,7 +46,31 @@ void maker::make(int x) {
     txt<<toBinary(rand() % 10000);
     txt.close();
 }
+void maker::modify(int x, int reemplazo) {
+    long array[3000];
+    int i=0;
+    string line;
+    struct passwd *pw = getpwuid(getuid());
+    const char *homedir = pw->pw_dir;
+    string name=homedir;
+    ofstream txt(name+"/BINARIOSTEMP.txt");
+    ifstream read(name+"/BINARIOS.txt" );
+    while(getline(read,line)){
+        if(i==x){
+            txt<<reemplazo<<"\n";
+        }
+        else{
+            txt<<line<<"\n";
 
+        }
+        i++;
+    }
+    string rem1=name+"/BINARIOSTEMP.txt";
+    string rem2=name+"/BINARIOS.txt";
+    rename(rem1.c_str(),rem2.c_str() );
+    txt.close();
+
+}
 void maker::read() {
     long array[3000];
     int i=0;

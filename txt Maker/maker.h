@@ -8,12 +8,11 @@
 
 class maker {
 public:
-
     static void make(int x);
      int*  getLine(int x );
     static void read();
     int* sacaArr1();
-
+static void modify(int x, int reemplazo);
     int *sacaArr3();
 
     int *sacaArr2();
