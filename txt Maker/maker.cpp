@@ -47,7 +47,7 @@ void maker::make(int x) {
 }
 
 void maker::read() {
-    long array[1000];
+    long array[3000];
     int i=0;
     string line;
     struct passwd *pw = getpwuid(getuid());
@@ -58,7 +58,7 @@ void maker::read() {
         array[i]=toDecimal(std::stol(line));
         i++;
     }
-    for(int y=0; y<1000;y++){
+    for(int y=0; y<3000;y++){
         cout<<"\n"<<array[y];
     }
 

@@ -16,12 +16,12 @@ public:
     static int x[pagesize] ;
     static int y[pagesize];
     static int z[pagesize];
-    void ordenar(int *array, int start, int end);
+    static void ordenar(int *array, int start, int end);
     int activateX=0;
     int activatez=0;
     int activatey=0;
     int &operator[](int index);
-    void print_Array(int numeroPag);
+   static  void print_Array(int numeroPag);
     void Ordena_Pag();
 };
 
