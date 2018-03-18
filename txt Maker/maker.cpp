@@ -55,6 +55,7 @@ void maker::read() {
     string name=homedir;
     ifstream txt(name+"/BINARIOS.txt");
     while(getline(txt,line)){
+        "2";
         array[i]=toDecimal(std::stol(line));
         i++;
     }
