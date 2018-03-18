@@ -97,7 +97,7 @@ int* maker::sacaArr1() {
     const char *homedir = pw->pw_dir;
     string name=homedir;
     ifstream txt(name+"/BINARIOS.txt");
-    while(getline(txt,line) && i<=999){
+    while(getline(txt,line) && i<BigArray::pagesize){
          BigArray::x[i] =toDecimal(std::stol(line));
             i++;
     }
@@ -112,7 +112,7 @@ int *maker::sacaArr3() {
     string name=homedir;
     ifstream txt(name+"/BINARIOS.txt");
     while(getline(txt,line) && i<=1999){
-        if(i>999 && i<=1999){
+        if(i>BigArray::pagesize-1 && i<BigArray::pagesize*2){
             BigArray::y[i] =toDecimal(std::stol(line));}
         i++;
     }
@@ -126,8 +126,8 @@ int *maker::sacaArr2() {
     const char *homedir = pw->pw_dir;
     string name=homedir;
     ifstream txt(name+"/BINARIOS.txt");
-    while(getline(txt,line) && i<=2999){
-        if(i>1999 && i<=2999){
+    while(getline(txt,line) && i<BigArray::pagesize*3){
+        if(i>BigArray::pagesize*2-1 && i<BigArray::pagesize*3){
             BigArray::z[i] =toDecimal(std::stol(line));}
         i++;
     }

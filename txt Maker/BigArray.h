@@ -7,7 +7,7 @@
 
 
 #include "maker.h"
-
+#include <iostream>
 class BigArray {
 public:
     static const int pagesize = 1000;
@@ -21,6 +21,8 @@ public:
     int activatez=0;
     int activatey=0;
     int &operator[](int index);
+    void print_Array(int numeroPag);
+    void Ordena_Pag();
 };
 
 

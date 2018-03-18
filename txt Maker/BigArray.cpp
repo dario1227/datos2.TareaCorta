@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include "BigArray.h"
+#include <iostream>
 int BigArray::pagesize = 1000;
 int BigArray::x[pagesize]={};
 int BigArray::y[pagesize]={};
@@ -52,81 +53,92 @@ void BigArray::ordenar(int *array, int start, int end) {
 }
 int& BigArray::operator[](int index) {
     int index_2 = floor(index/pagesize);
-    //DEFINIR LAS FUNCIONES :C
     if(index_2==0){
         if(activateX==0){
-            if(anterior%pagesize==0&& activatey==1){
-                activatey=0;
-                anterior=index;
-                var->getLine(1);
-                return x[index&pagesize];
-            }
             activateX=1;
             var->getLine(1);
             anterior = index;
-            return x[index&pagesize];
+            return x[index%pagesize];
         }
         else{
+            if(anterior%pagesize==0){
+                activatey=0;
+                anterior=index;
+                return x[index%pagesize];
+                }
             anterior = index;
-            return x[index&pagesize];
+            return x[index%pagesize];
         }
 
     }
     if(index_2==1){
         if(activatey==0){
-            if(anterior==pagesize-1&&index%pagesize==1&&activatey==0){
+            if(anterior==pagesize-1&&index%pagesize==0){
                 activatey=1;
                 var->getLine(2);
                 activateX=0;
-                //MAPEAR EL ARRAY XXXXXXXXXX
-                return y[index&pagesize];
+                return y[index%pagesize];
             }
-            if(anterior%pagesize==2&&index%pagesize==pagesize-1){
+            if(anterior%pagesize==0&&index%pagesize==pagesize-1){
                 activatey=1;
                 var->getLine(2);
                 activatez=0;
-                //MAPEAR YYYYY
-                return y[index&pagesize];
+                return y[index%pagesize];
 
             }
+
 
         }
         else{
-            if(anterior==pagesize-1&&index%pagesize==1&&activatey==0&&activateX==1){
+            if(anterior==pagesize-1&&index%pagesize==0){
                 activatey=1;
                 activateX=0;
-                //MAPEAR EL ARRAY XXXXXXXXXX
-                return y[index&pagesize];
+                return y[index%pagesize];
             }
-            if(anterior%pagesize==2&&index%pagesize==pagesize-1&&activatez==1){
+            if(anterior%pagesize==0&&index%pagesize==pagesize-1){
                 activatey=1;
                 activatez=0;
-                //MAPEAR YYYYY
-                return y[index&pagesize];
+                return y[index%pagesize];
 
             }else {
                 anterior = index;
-                return y[index&pagesize];
+                return y[index%pagesize];
             }
         }
 
     }
     if(index_2==2){
         if(activatez==0){
-            if(anterior==pagesize*2 -1 &&index%pagesize==2&& activatey==1){
+            if(anterior==pagesize*2 -1 &&index%pagesize==0){
                 activatey=0;
                 anterior=index;
                 var->getLine(3);
-                return z[index&pagesize];
+                return z[index%pagesize];
             }
             activateX=1;
             var->getLine(3);
             anterior = index;
-            return z[index-2000];
+            return z[index%pagesize];
         } else{
             anterior = index;
-            return z[index&pagesize];
+            return z[index%pagesize];
         }
 
+    }
+}
+void BigArray::print_Array(int numeroPag) {
+    std::cout<<"Numero de pagina arreglada:  "<<numeroPag;
+    int index = 0;
+    while(index<pagesize){
+        if(numeroPag==0){
+            std::cout<<""<<BigArray::x[index];
+        }
+        if(numeroPag==1){
+            std::cout<<""<<BigArray::y[index];
+        }
+        if(numeroPag==2){
+            std::cout<<""<<BigArray::z[index];
+        }
+        index++;
     }
 }
