@@ -5,7 +5,7 @@
 #include <cmath>
 #include "BigArray.h"
 #include <iostream>
-int BigArray::pagesize = 1000;
+
 int BigArray::x[pagesize]={};
 int BigArray::y[pagesize]={};
 int BigArray::z[pagesize]={};
