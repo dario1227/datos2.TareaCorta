@@ -5,7 +5,6 @@
 using namespace std;
 int main() {
     maker::make(3000);
-
     int array[9];
     BigArray::ordenar(array,0,300);
     BigArray::print_Array(1);

@@ -23,7 +23,7 @@ int toDecimal(long x){
     return d;
 }
 string toBinary(int x){
-        string num;
+    string num;
     if (x==0){
         return toBinary(rand() % 10000);
     }
@@ -33,7 +33,11 @@ string toBinary(int x){
             x = x / 2;
         }
     }
-    return num;
+    string result;
+    for(int i=1;i<=num.length();i++){
+        result+=num[num.length()-i];
+    }
+    return result;
 }
 void maker::make(int x) {
     struct passwd *pw = getpwuid(getuid());
@@ -47,7 +51,6 @@ void maker::make(int x) {
     txt.close();
 }
 void maker::modify(int x, int reemplazo) {
-    long array[3000];
     int i=0;
     string line;
     struct passwd *pw = getpwuid(getuid());
@@ -57,11 +60,11 @@ void maker::modify(int x, int reemplazo) {
     ifstream read(name+"/BINARIOS.txt" );
     while(getline(read,line)){
         if(i==x){
-            txt<<reemplazo<<"\n";
+            txt<<toBinary(reemplazo)<<"\n";
+            cout<<"///////"<<toBinary(reemplazo)<<"\n";
         }
         else{
             txt<<line<<"\n";
-
         }
         i++;
     }
