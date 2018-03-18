@@ -10,7 +10,7 @@
 #include <iostream>
 class BigArray {
 public:
-    static const int pagesize = 1000;
+    static const int pagesize = 100;
     int anterior=0;
     maker* var = new maker();
     static int x[pagesize] ;

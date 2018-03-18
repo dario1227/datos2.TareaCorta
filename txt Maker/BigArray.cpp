@@ -9,34 +9,37 @@
 int BigArray::x[pagesize]={};
 int BigArray::y[pagesize]={};
 int BigArray::z[pagesize]={};
-int divide(int *array, int start, int end) {
+BigArray* var = new  BigArray();
+int divide(int *lol, int start, int end) {
+
     int left;
     int right;
     int pivot;
     int temp;
 
-    pivot = array[start];
+    pivot = (*var)[start];
     left = start;
     right = end;
     while (left < right) {
-        while (array[right] > pivot) {
+        while ((*var)[right] > pivot) {
             right--;
         }
 
-        while ((left < right) && (array[left] <= pivot)) {
+        while ((left < right) && ((*var)[left] <= pivot)) {
             left++;
         }
 
         if (left < right) {
-            temp = array[left];
-            array[left] = array[right];
-            array[right] = temp;
+            std::cout<<"ARRAY SE HIZO CAMBIO  "<<"LL";
+            temp = (*var)[left];
+            (*var)[left] = (*var)[right];
+            (*var)[right] = temp;
         }
     }
 
-    temp = array[right];
-    array[right] = array[start];
-    array[start] = temp;
+    temp = (*var)[right];
+    (*var)[right] = (*var)[start];
+    (*var)[start] = temp;
 
     return right;
 }
@@ -44,8 +47,9 @@ void BigArray::ordenar(int *array, int start, int end) {
     int pivot;
 
     if (start < end) {
-        pivot = divide(array, start, end);
-
+        std::cout<<"ARRAY SE HIZO CAMBIO  "<<"LL";
+        pivot = divide(array, start, end-1);
+        std::cout<<"Numero de pagina arreglada:  "<<"LOL";
         BigArray::ordenar(array, start, pivot - 1);
         BigArray::ordenar(array, pivot + 1, end);
     }
@@ -53,6 +57,7 @@ void BigArray::ordenar(int *array, int start, int end) {
 }
 int& BigArray::operator[](int index) {
     int index_2 = floor(index/pagesize);
+    std::cout<<index_2<<"\n";
     if(index_2==0){
         if(activateX==0){
             activateX=1;
@@ -62,7 +67,6 @@ int& BigArray::operator[](int index) {
         }
         else{
             if(anterior%pagesize==0){
-                activatey=0;
                 anterior=index;
                 return x[index%pagesize];
                 }
@@ -73,16 +77,24 @@ int& BigArray::operator[](int index) {
     }
     if(index_2==1){
         if(activatey==0){
+
             if(anterior==pagesize-1&&index%pagesize==0){
+                std::cout<<"############3333333333333#################################### "<<activatey;
+
+                std::cout<<"############3333333333333#################################### "<<activatey;
+
+                std::cout<<"############3333333333333#################################### "<<"LOL";
+
                 activatey=1;
                 var->getLine(2);
-                activateX=0;
+
                 return y[index%pagesize];
             }
             if(anterior%pagesize==0&&index%pagesize==pagesize-1){
+                std::cout<<"Numero de pagina arreglada:  "<<"LOL";
+
                 activatey=1;
                 var->getLine(2);
-                activatez=0;
                 return y[index%pagesize];
 
             }
@@ -92,12 +104,10 @@ int& BigArray::operator[](int index) {
         else{
             if(anterior==pagesize-1&&index%pagesize==0){
                 activatey=1;
-                activateX=0;
                 return y[index%pagesize];
             }
             if(anterior%pagesize==0&&index%pagesize==pagesize-1){
                 activatey=1;
-                activatez=0;
                 return y[index%pagesize];
 
             }else {
@@ -108,14 +118,16 @@ int& BigArray::operator[](int index) {
 
     }
     if(index_2==2){
+
         if(activatez==0){
             if(anterior==pagesize*2 -1 &&index%pagesize==0){
-                activatey=0;
+                activatez=1;
                 anterior=index;
                 var->getLine(3);
                 return z[index%pagesize];
             }
-            activateX=1;
+
+            activatez=1;
             var->getLine(3);
             anterior = index;
             return z[index%pagesize];
@@ -127,17 +139,18 @@ int& BigArray::operator[](int index) {
     }
 }
 void BigArray::print_Array(int numeroPag) {
+
     std::cout<<"Numero de pagina arreglada:  "<<numeroPag;
     int index = 0;
     while(index<pagesize){
         if(numeroPag==0){
-            std::cout<<""<<BigArray::x[index];
+            std::cout<<","<<BigArray::x[index];
         }
         if(numeroPag==1){
-            std::cout<<""<<BigArray::y[index];
+            std::cout<<","<<BigArray::y[index];
         }
         if(numeroPag==2){
-            std::cout<<""<<BigArray::z[index];
+            std::cout<<","<<BigArray::z[index];
         }
         index++;
     }

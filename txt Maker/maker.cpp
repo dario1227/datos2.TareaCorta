@@ -113,7 +113,7 @@ int *maker::sacaArr3() {
     ifstream txt(name+"/BINARIOS.txt");
     while(getline(txt,line) && i<=1999){
         if(i>BigArray::pagesize-1 && i<BigArray::pagesize*2){
-            BigArray::y[i] =toDecimal(std::stol(line));}
+            BigArray::y[i%BigArray::pagesize] =toDecimal(std::stol(line));}
         i++;
     }
     return nullptr;
@@ -128,7 +128,7 @@ int *maker::sacaArr2() {
     ifstream txt(name+"/BINARIOS.txt");
     while(getline(txt,line) && i<BigArray::pagesize*3){
         if(i>BigArray::pagesize*2-1 && i<BigArray::pagesize*3){
-            BigArray::z[i] =toDecimal(std::stol(line));}
+            BigArray::z[i%BigArray::pagesize] =toDecimal(std::stol(line));}
         i++;
     }
     return nullptr;}
