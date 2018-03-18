@@ -57,7 +57,7 @@ void maker::modify(int x, int reemplazo) {
     ifstream read(name+"/BINARIOS.txt" );
     while(getline(read,line)){
         if(i==x){
-            txt<<reemplazo<<"\n";
+            txt<<toBinary(reemplazo)<<"\n";
         }
         else{
             txt<<line<<"\n";
