@@ -6,9 +6,9 @@
 #include "BigArray.h"
 #include <iostream>
 
-int BigArray::x[pagesize]={};
-int BigArray::y[pagesize]={};
-int BigArray::z[pagesize]={};
+int* BigArray::x;
+int* BigArray::y;
+int* BigArray::z;
 BigArray* var = new  BigArray();
 int divide(int *lol, int start, int end) {
 
@@ -43,6 +43,14 @@ int divide(int *lol, int start, int end) {
 
     return right;
 }
+void BigArray::ordenar2(int *array, int start, int end) {
+    BigArray::ordenar(array,start,end);
+    maker::writeX();
+
+    maker::writeY();
+    maker::writteZ();
+}
+
 void BigArray::ordenar(int *array, int start, int end) {
     int pivot;
 
@@ -56,6 +64,7 @@ void BigArray::ordenar(int *array, int start, int end) {
 
 }
 int& BigArray::operator[](int index) {
+    //switchPage(index,anterior);
     int index_2 = floor(index/pagesize);
     std::cout<<index_2<<"\n";
     if(index_2==0){
@@ -73,18 +82,11 @@ int& BigArray::operator[](int index) {
             anterior = index;
             return x[index%pagesize];
         }
-
     }
     if(index_2==1){
         if(activatey==0){
 
             if(anterior==pagesize-1&&index%pagesize==0){
-                std::cout<<"############3333333333333#################################### "<<activatey;
-
-                std::cout<<"############3333333333333#################################### "<<activatey;
-
-                std::cout<<"############3333333333333#################################### "<<"LOL";
-
                 activatey=1;
                 var->getLine(2);
 
@@ -96,10 +98,7 @@ int& BigArray::operator[](int index) {
                 activatey=1;
                 var->getLine(2);
                 return y[index%pagesize];
-
             }
-
-
         }
         else{
             if(anterior==pagesize-1&&index%pagesize==0){
@@ -115,7 +114,6 @@ int& BigArray::operator[](int index) {
                 return y[index%pagesize];
             }
         }
-
     }
     if(index_2==2){
 
@@ -135,8 +133,8 @@ int& BigArray::operator[](int index) {
             anterior = index;
             return z[index%pagesize];
         }
-
     }
+    return z[pagesize-1];
 }
 void BigArray::print_Array(int numeroPag) {
 
@@ -154,4 +152,36 @@ void BigArray::print_Array(int numeroPag) {
         }
         index++;
     }
+}
+
+void BigArray::switchPage(int index, int anterior) {
+    if(anterior==pagesize-1&& index==pagesize){
+        activateX=0;
+        if(BigArray::x== nullptr){
+            var->getLine(1);
+        }
+        maker::writeX();
+    }
+//    if(anterior==pagesize&&index==pagesize-1){
+//        if(BigArray::y== nullptr){
+//            var->getLine(2);
+//        }
+//        activatey=0;
+//        maker::writeY();
+//    }
+    if(anterior==pagesize*2&&index==pagesize*2 -1){
+        if(BigArray::z== nullptr){
+            var->getLine(3);
+        }
+
+        activatez=0;
+        maker::writteZ();
+    }
+//    if(anterior==pagesize*2-1&& index==pagesize*2){
+//        if(BigArray::y== nullptr){
+//            var->getLine(2);
+//        }
+//        activatey=0;
+//        maker::writeY();
+//    }
 }

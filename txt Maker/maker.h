@@ -13,9 +13,13 @@ public:
     static void read();
     int* sacaArr1();
 static void modify(int x, int reemplazo);
-    int *sacaArr3();
-
     int *sacaArr2();
+    int *sacaArr3();
+    static void writeX();
+    static void writeY();
+    static void writteZ();
+
+
 };
 
 

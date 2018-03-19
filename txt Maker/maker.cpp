@@ -74,6 +74,83 @@ void maker::modify(int x, int reemplazo) {
     txt.close();
 
 }
+void maker::writeX() {
+    int i=0;
+    string line;
+    struct passwd *pw = getpwuid(getuid());
+    const char *homedir = pw->pw_dir;
+    string name=homedir;
+    ofstream txt(name+"/BINARIOSTEMP.txt");
+    ifstream read(name+"/BINARIOS.txt" );
+    while(getline(read,line)){
+        if(i<BigArray::pagesize){
+            txt<<toBinary(BigArray::x[i])<<"\n";
+            cout<<"///////"<<toBinary(BigArray::x[i])<<"\n";
+        }
+        else{
+            txt<<line<<"\n";
+        }
+        i++;
+    }
+    string rem1=name+"/BINARIOSTEMP.txt";
+    string rem2=name+"/BINARIOS.txt";
+    rename(rem1.c_str(),rem2.c_str() );
+    delete[] BigArray::x;
+    BigArray::x= nullptr;
+    txt.close();
+}
+void maker::writeY() {
+    int i=0;
+    string line;
+    struct passwd *pw = getpwuid(getuid());
+    const char *homedir = pw->pw_dir;
+    string name=homedir;
+    ofstream txt(name+"/BINARIOSTEMP.txt");
+    ifstream read(name+"/BINARIOS.txt" );
+    while(getline(read,line)){
+        if(i>=BigArray::pagesize&&i<BigArray::pagesize*2){
+            txt<<toBinary(BigArray::y[i%BigArray::pagesize])<<"\n";
+            cout<<"///////"<<toBinary(BigArray::y[i])<<"\n";
+        }
+        else{
+            txt<<line<<"\n";
+        }
+        i++;
+    }
+    string rem1=name+"/BINARIOSTEMP.txt";
+    string rem2=name+"/BINARIOS.txt";
+    rename(rem1.c_str(),rem2.c_str() );
+    delete[] BigArray::y;
+    BigArray::y= nullptr;
+    txt.close();
+}
+void maker::writteZ() {
+    int i=0;
+    string line;
+    struct passwd *pw = getpwuid(getuid());
+    const char *homedir = pw->pw_dir;
+    string name=homedir;
+    ofstream txt(name+"/BINARIOSTEMP.txt");
+    ifstream read(name+"/BINARIOS.txt" );
+    while(getline(read,line)){
+        if(i>=BigArray::pagesize*2&&i<BigArray::pagesize*3){
+            txt<<toBinary(BigArray::z[i%BigArray::pagesize])<<"\n";
+            cout<<"///////"<<toBinary(BigArray::z[i])<<"\n";
+        }
+        else{
+            txt<<line<<"\n";
+        }
+        i++;
+    }
+    string rem1=name+"/BINARIOSTEMP.txt";
+    string rem2=name+"/BINARIOS.txt";
+    rename(rem1.c_str(),rem2.c_str() );
+    delete[] BigArray::z;
+    BigArray::z = nullptr;
+    txt.close();
+}
+
+
 void maker::read() {
     long array[3000];
     int i=0;
@@ -122,6 +199,7 @@ int* maker::getLine(int x){
 int* maker::sacaArr1() {
     int i=0;
     string line;
+    BigArray::x=new int[BigArray::pagesize];
     struct passwd *pw = getpwuid(getuid());
     const char *homedir = pw->pw_dir;
     string name=homedir;
@@ -134,6 +212,8 @@ int* maker::sacaArr1() {
 }
 
 int *maker::sacaArr3() {
+    BigArray::z=new int[BigArray::pagesize];
+
     int i=0;
     string line;
     struct passwd *pw = getpwuid(getuid());
@@ -142,13 +222,15 @@ int *maker::sacaArr3() {
     ifstream txt(name+"/BINARIOS.txt");
     while(getline(txt,line) && i<=1999){
         if(i>BigArray::pagesize-1 && i<BigArray::pagesize*2){
-            BigArray::y[i%BigArray::pagesize] =toDecimal(std::stol(line));}
+            BigArray::z[i%BigArray::pagesize] =toDecimal(std::stol(line));}
         i++;
     }
     return nullptr;
 }
 
 int *maker::sacaArr2() {
+    BigArray::y=new int[BigArray::pagesize];
+
     int i=0;
     string line;
     struct passwd *pw = getpwuid(getuid());
@@ -157,7 +239,7 @@ int *maker::sacaArr2() {
     ifstream txt(name+"/BINARIOS.txt");
     while(getline(txt,line) && i<BigArray::pagesize*3){
         if(i>BigArray::pagesize*2-1 && i<BigArray::pagesize*3){
-            BigArray::z[i%BigArray::pagesize] =toDecimal(std::stol(line));}
+            BigArray::y[i%BigArray::pagesize] =toDecimal(std::stol(line));}
         i++;
     }
     return nullptr;}
