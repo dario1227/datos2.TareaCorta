@@ -64,10 +64,21 @@ void BigArray::ordenar(int *array, int start, int end) {
 
 }
 int& BigArray::operator[](int index) {
+    if(index == pagesize-1||index == pagesize||index == pagesize*2-1 || index == pagesize*2 ){
+        maker::writeX();
+        maker::writeY();
+        maker::writteZ();
+        x= nullptr;
+        y = nullptr;
+        z = nullptr;
+    }
     //switchPage(index,anterior);
     int index_2 = floor(index/pagesize);
     std::cout<<index_2<<"\n";
     if(index_2==0){
+        if(x == nullptr){
+            var->getLine(1);
+        }
         if(activateX==0){
             activateX=1;
             var->getLine(1);
@@ -84,6 +95,9 @@ int& BigArray::operator[](int index) {
         }
     }
     if(index_2==1){
+        if(y == nullptr){
+            var->getLine(2);
+        }
         if(activatey==0){
 
             if(anterior==pagesize-1&&index%pagesize==0){
@@ -101,6 +115,9 @@ int& BigArray::operator[](int index) {
             }
         }
         else{
+            if(y == nullptr){
+                var->getLine(3);
+            }
             if(anterior==pagesize-1&&index%pagesize==0){
                 activatey=1;
                 return y[index%pagesize];
@@ -116,7 +133,9 @@ int& BigArray::operator[](int index) {
         }
     }
     if(index_2==2){
-
+        if(z== nullptr){
+            var->getLine(3);
+        }
         if(activatez==0){
             if(anterior==pagesize*2 -1 &&index%pagesize==0){
                 activatez=1;

@@ -13,9 +13,9 @@ public:
     static const int pagesize = 200;
     int anterior=0;
     maker* var = new maker();
-    static int* x ;
-    static int* y;
-    static int *z;
+    static int* x  ;
+    static int* y ;
+    static int *z ;
     static void ordenar(int *array, int start, int end);
     static void ordenar2(int *array, int start, int end);
     int activateX=0;

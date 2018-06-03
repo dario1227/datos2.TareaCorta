@@ -75,6 +75,10 @@ void maker::modify(int x, int reemplazo) {
 
 }
 void maker::writeX() {
+    if(BigArray::x== nullptr){
+        maker cosa = maker();
+        cosa.sacaArr1();
+    }
     int i=0;
     string line;
     struct passwd *pw = getpwuid(getuid());
@@ -100,6 +104,10 @@ void maker::writeX() {
     txt.close();
 }
 void maker::writeY() {
+    if(BigArray::y== nullptr){
+        maker cosa = maker();
+        cosa.sacaArr2();
+    }
     int i=0;
     string line;
     struct passwd *pw = getpwuid(getuid());
@@ -125,6 +133,10 @@ void maker::writeY() {
     txt.close();
 }
 void maker::writteZ() {
+    if(BigArray::z== nullptr){
+        maker cosa = maker();
+        cosa.sacaArr3();
+    }
     int i=0;
     string line;
     struct passwd *pw = getpwuid(getuid());
@@ -220,8 +232,8 @@ int *maker::sacaArr3() {
     const char *homedir = pw->pw_dir;
     string name=homedir;
     ifstream txt(name+"/BINARIOS.txt");
-    while(getline(txt,line) && i<=1999){
-        if(i>BigArray::pagesize-1 && i<BigArray::pagesize*2){
+    while(getline(txt,line) && i<BigArray::pagesize*3){
+        if(i>BigArray::pagesize*2-1 && i<BigArray::pagesize*3){
             BigArray::z[i%BigArray::pagesize] =toDecimal(std::stol(line));}
         i++;
     }
@@ -237,9 +249,10 @@ int *maker::sacaArr2() {
     const char *homedir = pw->pw_dir;
     string name=homedir;
     ifstream txt(name+"/BINARIOS.txt");
-    while(getline(txt,line) && i<BigArray::pagesize*3){
-        if(i>BigArray::pagesize*2-1 && i<BigArray::pagesize*3){
+    while(getline(txt,line) && i<=1999){
+        if(i>BigArray::pagesize-1 && i<BigArray::pagesize*2){
             BigArray::y[i%BigArray::pagesize] =toDecimal(std::stol(line));}
         i++;
     }
+
     return nullptr;}
